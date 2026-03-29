@@ -50,13 +50,13 @@ Expense-Wise/
 ## 📸 Screenshots
 
 ## Dashboard Page
-<img width="1340" height="636" alt="image" src="https://github.com/user-attachments/assets/bcd79c71-028e-4ab7-bd75-f84ba748bdb3" />
-<img width="1333" height="632" alt="image" src="https://github.com/user-attachments/assets/cc4a046d-b417-472f-ba1e-3b888b573963" />
-<img width="1340" height="615" alt="image" src="https://github.com/user-attachments/assets/14b50690-e345-41f3-97cb-ad1177dbf190" />
+(https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image1.png)
+(https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-2.png)
+https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-3.png
 
 ## Income Page
-<img width="1343" height="624" alt="image" src="https://github.com/user-attachments/assets/83e6c5f7-3f5d-4d1d-b198-a915b735428a" />
+https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-4.png
 
 ## Expense Page
-<img width="1345" height="634" alt="image" src="https://github.com/user-attachments/assets/2ae6f437-d0a3-4ca6-be50-a8b039622c04" />
+https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-5.png
 

@@ -1,0 +1,48 @@
+# Expensewise 💸
+
+**Expensewise** is a professional MERN stack application designed to help users track their financial health through an intuitive, interactive dashboard. It features secure authentication, real-time expense/income tracking, and data visualization.
+
+🔗 **Live Demo:** [https://expense-wise-frontend.onrender.com](https://expense-wise-frontend.onrender.com)
+
+---
+
+## 🚀 Features
+
+* **Secure Authentication:** User signup and login with JWT-based authentication and profile picture uploads.
+* **Interactive Dashboard:** A modern, dark-themed UI featuring real-time financial overviews.
+* **Data Visualization:** Dynamic charts (Area & Bar) built with Recharts to visualize income vs. expense trends.
+* **Transaction Management:** Full CRUD operations for adding, deleting, and filtering income and expenses.
+* **Excel Export:** Download your financial history directly to an Excel file for offline analysis.
+* **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+* **React.js** & **Vite** (Fast building and bundling)
+* **Tailwind CSS** (Utility-first styling for modern UI)
+* **Recharts** (Interactive data visualization)
+* **Axios** (API communication)
+
+### Backend
+* **Node.js** & **Express.js** (Robust server-side logic)
+* **MongoDB Atlas** (Cloud NoSQL database)
+* **JSON Web Tokens (JWT)** (Secure user sessions)
+* **Cloudinary** (Image hosting for profile photos)
+
+---
+
+## 📂 Project Structure
+
+```text
+Expense-Wise/
+├── frontend/             # React + Vite source code
+│   ├── src/
+│   │   ├── components/   # Reusable UI elements
+│   │   ├── pages/        # Dashboard, Auth, Home
+│   │   └── utils/        # API paths and helpers
+└── backend/              # Node + Express API
+    ├── controllers/      # Logic for Auth and Expenses
+    ├── models/           # MongoDB Schemas
+    └── routes/           # Express API Endpoints

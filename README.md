@@ -46,3 +46,13 @@ Expense-Wise/
     ├── controllers/      # Logic for Auth and Expenses
     ├── models/           # MongoDB Schemas
     └── routes/           # Express API Endpoints
+
+## 📸 Screenshots
+
+![Dashboard](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+![Income Page](image-3.png)
+
+![Expense Page](image-4.png)

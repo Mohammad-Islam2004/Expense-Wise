@@ -4,6 +4,7 @@
 
 🔗 **Live Demo:** [https://expense-wise-frontend.onrender.com](https://expense-wise-frontend.onrender.com)
 
+
 ---
 
 ## 🚀 Features
@@ -31,6 +32,7 @@
 * **JSON Web Tokens (JWT)** (Secure user sessions)
 * **Cloudinary** (Image hosting for profile photos)
 
+
 ---
 
 ## 📂 Project Structure
@@ -47,19 +49,7 @@ Expense-Wise/
     ├── models/           # MongoDB Schemas
     └── routes/           # Express API Endpoints
 
-## 📸 Screenshots
 
-<<<<<<< HEAD
-=======
-## Dashboard Page
-🔗 **Live Demo:** [https://expense-wise-frontend.onrender.com](https://expense-wise-frontend.onrender.com)
-(https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-2.png)
-https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-3.png
+---
 
-## Income Page
-https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-4.png
-
-## Expense Page
-https://github.com/Mohammad-Islam2004/Expense-Wise/blob/main/image-5.png
-
->>>>>>> e39f53ac22fccd8d1ee3a5cd797d503ea6101d47
+## Screenshots are uploaded with files above

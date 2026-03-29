@@ -14,40 +14,23 @@ const SignUp = () => {
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
   const [error, setError] = useState(null)
 
-  const {updateUser} = useContext(UserContext)
-
+  const { updateUser } = useContext(UserContext)
   const navigate = useNavigate()
 
-  //handle signup submit btn
   const handleSignUp = async (e) => {
     e.preventDefault()
-
     let profileUserUrl = ""
 
-    if(!fullName){
-      setError("Please enter your name.")
-      return
-    }
-
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.")
-      return
-    }
-
-    if (!password) {
-      setError("Please enter the password.")
-      return
-    }
+    if (!fullName) return setError("Please enter your name.")
+    if (!validateEmail(email)) return setError("Please enter a valid email address.")
+    if (!password) return setError("Please enter the password.")
+    
     setError("")
 
-    //signup api call
-    try{
-
-      //upload image if present
-      if(profilePic) {
+    try {
+      if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic)
         profileUserUrl = imgUploadRes.imageUrl || ""
       }
@@ -58,6 +41,7 @@ const SignUp = () => {
         password,
         profileUserUrl,
       })
+      
       const { token, user } = response.data
 
       if (token) {
@@ -65,65 +49,68 @@ const SignUp = () => {
         updateUser(user)
         navigate("/dashboard")
       }
-    }
-    catch (error) {
-      if(error.response && error.response.data.message) {
+    } catch (error) {
+      if (error.response?.data?.message) {
         setError(error.response.data.message)
-      } else{
+      } else {
         setError("Something went wrong. Please try again later.")
       }
     }
   }
+
   return (
     <AuthLayout>
-      <div className="lg:w-full h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center">
+      <div className="lg:w-full h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center px-4 sm:px-0">
         <h3 className="text-xl font-semibold text-black">Create an Account</h3>
         <p className="text-xs text-slate-700 mt-1.25 mb-6">
-          join us today by entering your details below.
+          Join us today by entering your details below.
         </p>
 
         <form onSubmit={handleSignUp}>
+          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
-          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}/>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
+          {/* RESPONSIVE GRID LOGIC:
+              - grid-cols-1: Stacks inputs vertically (1 column) on mobile (< 640px).
+              - sm:grid-cols-2: Switches to 2 columns on larger screens.
+              - gap-3: Tighter spacing for mobile to keep the form visible.
+          */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <Input
               value={fullName}
-              onChange={({ target }) => {
-                setFullName(target.value)
-              }}
+              onChange={({ target }) => setFullName(target.value)}
               label="Full Name"
               placeholder="Enter your full name"
               type="text"
             />
+            
             <Input
               type="text"
               value={email}
-              onChange={({ target }) => {
-                setEmail(target.value)
-              }}
+              onChange={({ target }) => setEmail(target.value)}
               label="Email Address"
               placeholder="abc@example.com"
             />
-            <div className="col-span-2">
+
+            {/* sm:col-span-2 ensures password takes full width only when in 2-column mode */}
+            <div className="sm:col-span-2">
               <Input
-              type="password"
-              value={password}
-              onChange={({ target }) => {
-                setPassword(target.value)
-              }}
-              label="Password"
-              placeholder="Min 8 characters"
-            />
+                type="password"
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
+                label="Password"
+                placeholder="Min 8 characters"
+              />
             </div>
           </div>
-          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-          <button type="submit" className="btn-primary">
+
+          {error && <p className="text-red-500 text-xs py-2">{error}</p>}
+
+          <button type="submit" className="btn-primary w-full mt-4">
             SIGNUP
           </button>
-          <p className="text-[13px] text-slate-800 mt-3">
-            Already have an account? {""}
+
+          <p className="text-[13px] text-slate-800 mt-4 text-center sm:text-left">
+            Already have an account?{" "}
             <Link className="font-medium text-primary underline" to="/login">
               Login
             </Link>

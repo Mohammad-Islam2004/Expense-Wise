@@ -17,12 +17,11 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, o
 
       <div className='flex-1 flex items-center justify-between min-w-0'>
         {/* Text Section - Fixed min-width ensures icons align */}
-        <div className='flex-1 min-w-[120px] sm:min-w-[150px]'>
+        <div className='flex-1 min-w-30 sm:min-w-37.5'>
           <p className='text-sm text-gray-700 font-semibold truncate'>{title}</p>
           <p className='text-[10px] text-gray-400 mt-0.5'>{date}</p>
         </div>
 
-        {/* Actions & Amount Section */}
         <div className='flex items-center gap-3 ml-2'>
           {!hideDeleteBtn && (
             <button 
@@ -34,7 +33,6 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, o
             </button>
           )}
           
-          {/* Amount Pill - Fixed Width to prevent jumping */}
           <div className={`flex items-center justify-between gap-2 px-3 py-1.5 rounded-md min-w-22.5 ${getAmountStyles()}`}>
             <h6 className='text-xs font-bold whitespace-nowrap'>
               {type === 'income' ? "+" : "-"} ₹{amount}

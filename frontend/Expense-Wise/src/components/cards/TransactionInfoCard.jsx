@@ -7,7 +7,7 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, o
   return (
     <div className='group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-100/60 transition-all'>
       {/* Icon Section - Fixed Width */}
-      <div className='w-12 h-12 flex-shrink-0 flex items-center justify-center text-xl text-gray-800 bg-gray-100 rounded-full'>
+      <div className='w-12 h-12 shrink-0 flex items-center justify-center text-xl text-gray-800 bg-gray-100 rounded-full'>
         {icon ? (
           <img src={icon} alt={title} className='w-6 h-6'/>
         ) : (

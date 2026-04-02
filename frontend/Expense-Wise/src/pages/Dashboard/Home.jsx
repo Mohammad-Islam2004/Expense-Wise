@@ -107,7 +107,7 @@ const totalBalance = totalIncome - totalExpense;
     <button
       key={type}
       onClick={() => setFilterType(type)}
-      className={`px-4 py-1 text-sm rounded-[7px] ${
+      className={`px-4 py-1 text-sm font-medium rounded-md transition-all ${
         filterType === type ? "bg-primary text-white" : "bg-white text-gray-800"
       }`}
     >

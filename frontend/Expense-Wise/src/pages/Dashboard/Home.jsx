@@ -24,6 +24,7 @@ const Home = () => {
 
   const [dashboardData, setDashboardData] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [filterType, setFilterType] = useState('all');
 
   const fetchDashboardData = async () => {
     if(loading) return
@@ -48,60 +49,123 @@ const Home = () => {
     return () => {}
   })
 
+  const getFilteredList = (transactions) => {
+  if (!transactions) return [];
+  if (filterType === 'all') return transactions;
+
+  const now = new Date();
+  
+  
+  return transactions.filter((item) => {
+    if (!item.date) return false;
+
+    // 1. Clean the string: "30th Mar 2026" -> "30 Mar 2026"
+    const dateCleaned = item.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+    const itemDate = new Date(dateCleaned);
+
+    // 2. Debugging: Uncomment the line below to see dates in your Console (F12)
+    // console.log(`Comparing item: ${itemDate.toDateString()} with now: ${now.toDateString()}`);
+
+    if (filterType === "daily") {
+      return itemDate.toDateString() === now.toDateString();
+    }
+
+    if (filterType === "monthly") {
+      return (
+        itemDate.getMonth() === now.getMonth() &&
+        itemDate.getFullYear() === now.getFullYear()
+      );
+    }
+
+    if (filterType === "yearly") {
+      return itemDate.getFullYear() === now.getFullYear();
+    }
+
+    return true;
+  });
+};
+
+// Apply filter to your raw data
+const filteredRecent = getFilteredList(dashboardData?.recentTransactions || []);
+
+// Recalculate Totals for InfoCards based on filtered data
+const totalIncome = filteredRecent
+  .filter(t => t.type === 'income')
+  .reduce((sum, t) => sum + t.amount, 0);
+
+const totalExpense = filteredRecent
+  .filter(t => t.type === 'expense')
+  .reduce((sum, t) => sum + t.amount, 0);
+
+const totalBalance = totalIncome - totalExpense;
+
   return (
     <DashboardLayout activeMenu="Dashboard">
       <div className='my-5 mx-auto'>
+      <div className="flex gap-2 mb-6 justify-end">
+  {['daily', 'monthly', 'yearly', 'all'].map((type) => (
+    <button
+      key={type}
+      onClick={() => setFilterType(type)}
+      className={`px-4 py-1 text-sm rounded-[7px] ${
+        filterType === type ? "bg-primary text-white" : "bg-white text-gray-800"
+      }`}
+    >
+      {type.toUpperCase()}
+    </button>
+  ))}
+</div>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           <InfoCard
             icon={<IoMdCard/>}
             label='Total Balance'
-            value={addThousandSeparator(dashboardData?.totalBalance || 0)}
+            value={addThousandSeparator(totalBalance || 0)}
             color='bg-primary'
           />
 
           <InfoCard
             icon={<LuWalletMinimal/>}
             label='Total Income'
-            value={addThousandSeparator(dashboardData?.totalIncome || 0)}
+            value={addThousandSeparator(totalIncome || 0)}
             color='bg-orange-500'
           />
 
           <InfoCard
             icon={<LuHandCoins/>}
             label='Total Expense'
-            value={addThousandSeparator(dashboardData?.totalExpense || 0)}
+            value={addThousandSeparator(totalExpense || 0)}
             color='bg-red-500'
           />
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
           <RecentTransactions
-          transactions={dashboardData?.recentTransactions}
+          transactions={filteredRecent}
           onSeeMore= {() => navigate("/expense")}
           />
           
           <FinanceOverview
-            totalBalance={dashboardData?.totalBalance || 0}
-            totalIncome={dashboardData?.totalIncome || 0}
-            totalExpense={dashboardData?.totalExpense || 0}
+            totalBalance={totalBalance || 0}
+            totalIncome={totalIncome || 0}
+            totalExpense={totalExpense || 0}
           />
 
           <ExpenseTransactions
-            transactions={dashboardData?.last30DaysExpenses?.transactions || []}
+            transactions={getFilteredList(dashboardData?.last30DaysExpenses?.transactions) || []}
             onSeeMore={ () => navigate("/expense")}
           />
 
           <Last30DaysExpenses
-            data={dashboardData?.last30DaysExpenses?.transactions || []}
+            data={getFilteredList(dashboardData?.last30DaysExpenses?.transactions) || []}
           />
 
           <RecentIncomeWithChart
-            data= {dashboardData?.last60DaysIncome?.transactions?.slice(0, 4) || []}
-            totalIncome={dashboardData?.totalIncome || 0}
+            data= {getFilteredList(dashboardData?.last60DaysIncome?.transactions?.slice(0, 4)) || []}
+            totalIncome={totalIncome || 0}
           />
 
           <RecentIncome
-            transactions={dashboardData?.last60DaysIncome?.transactions || []}
+            transactions={getFilteredList(dashboardData?.last60DaysIncome?.transactions)}
             onSeeMore={() => navigate("/income")}
           />
         </div>

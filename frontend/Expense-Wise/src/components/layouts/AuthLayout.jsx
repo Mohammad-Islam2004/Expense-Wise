@@ -1,15 +1,15 @@
-import CARD_2 from "../../assets/images/card-2.png"
+import CARD_2 from "../../assets/images/card-1.png"
 import { LuTrendingUpDown } from "react-icons/lu"
 
 const AuthLayout = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="flex bg-gray-200/50">
       <div className="w-screen h-screen md:w-[68vw] px-12 pt-8 pb-12">
         <h2 className=" font-medium text-4xl text-black">Expense Wise</h2>
         {children}
       </div>
 
-      <div className="hidden md:block w-[40vw] h-screen bg-violet-50 bg-auth-bg-img bg-cover bg-no-repeat bg-center overflow-hidden p-8 relative">
+      <div className="hidden md:block w-[40vw] h-screen bg-violet-200/50 bg-auth-bg-img bg-cover bg-no-repeat bg-center overflow-hidden p-8 relative">
         <div className="w-48 h-48 rounded-[30px] bg-sky-300 absolute -top-7 -left-5" />
         <div className="w-48 h-48 rounded-[30px] bg-yellow-300/70 absolute -top-7 -right-5" />
         <div className="w-80 h-56 rounded-[40px] border-20 border-red-500 absolute top-[30%] -left-10" />
@@ -28,7 +28,7 @@ const AuthLayout = ({ children }) => {
 
         <img
           src={CARD_2}
-          className="w-64 lg:w-[90%] rounded-[10px] absolute bottom-10 shadow-lg shadow-blue-400/30"
+          className="w-64 lg:w-[90%] rounded-[10px] absolute bottom-10 shadow-lg shadow-blue-400/40 border border-violet-300"
         />
       </div>
     </div>
